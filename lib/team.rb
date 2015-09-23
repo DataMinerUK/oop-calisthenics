@@ -19,7 +19,9 @@ class Team
   end
 
   def has_correct_gender_ratio?
-    all_genders = team.map { |player| player.gender}
+    all_genders = team.map do |player|
+      player.gender
+    end
     gender_numbers = Hash[all_genders.group_by {|gender| gender}.map {|k,v| [k,v.count]}].values
     gender_numbers.all? {|each_gender| each_gender > 1 }
   end
